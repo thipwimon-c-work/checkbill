@@ -17,13 +17,14 @@ import {
 } from 'react-native';
 
 import {
-  Header,
+  // Header,
   LearnMoreLinks,
   Colors,
   DebugInstructions,
-  ReloadInstructions,
+  ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
-
+import CountTop from './Component/CountTop';
+import { Content,Grid, Col, Header, Title, H3, H1 } from 'native-base';
 const App: () => React$Node = () => {
   return (
     <>
@@ -32,40 +33,25 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this Nutt
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
+          <Header >
+            <Title>Checkbill</Title>
+          </Header>
+          <Content>
+            
+          <Grid>
+            <Col >
+              <H3>จำนวนคน</H3>
+              <Text style={{ fontSize: 70 }}>0</Text>
+            </Col>
+            <Col >
+              <H3>ราคารวม</H3>
+              <Text style={{ fontSize: 70 }}>0</Text>
+            </Col>
+            <Col >
+            </Col>
+
+          </Grid>
+          </Content>
         </ScrollView>
       </SafeAreaView>
     </>
