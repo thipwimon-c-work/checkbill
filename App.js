@@ -23,40 +23,44 @@ import {
   DebugInstructions,
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
-import CountTop from './Component/CountTop';
+import CountTop from  "./Component/CountTop";
 import { Content,Grid, Col, Header, Title, H3, H1 } from 'native-base';
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header >
-            <Title>Checkbill</Title>
-          </Header>
-          <Content>
-            
-          <Grid>
-            <Col >
-              <H3>จำนวนคน</H3>
-              <Text style={{ fontSize: 70 }}>0</Text>
-            </Col>
-            <Col >
-              <H3>ราคารวม</H3>
-              <Text style={{ fontSize: 70 }}>0</Text>
-            </Col>
-            <Col >
-            </Col>
 
-          </Grid>
-          </Content>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+export default class App extends React.Component{
+  render() {
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <Header >
+              <Title>Checkbill</Title>
+            </Header>
+            <Content>
+              
+            <Grid>
+              <Col >
+               <CountTop/>
+              </Col>
+              <Col >
+                <H3>ราคารวม</H3>
+                <Text style={{ fontSize: 70 }}>0</Text>
+              </Col>
+              <Col >
+              </Col>
+  
+            </Grid>
+            </Content>
+          </ScrollView>
+        </SafeAreaView>
+      </>
+    );
+  }
+}
+ 
+
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -97,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+
