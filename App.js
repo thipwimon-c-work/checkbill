@@ -40,7 +40,6 @@ export default class App extends React.Component{
             </Header>
             <Content>
               
-              
             <Grid>
               <Col >
                <CountTop/>
