@@ -50,7 +50,6 @@ export default class App extends React.Component{
               </Col>
               <Col >
               </Col>
-  
             </Grid>
             </Content>
           </ScrollView>
