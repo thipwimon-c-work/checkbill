@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import {
     Text,
-    H3
-  } from 'react-native';
+    View
+} from 'react-native';
+import { Content, Grid, Col, Header, Title, H3, H1 } from 'native-base';
 
 export default class CountTop extends Component {
     render() {
 
         return (
-            <Text>hh</Text>
-            )
+            <View>
+                <H3>จำนวนคน</H3>
+                <Text style={{ fontSize: 70 }}>{this.props.count}</Text>
+            </View>
+        )
 
     }
 }

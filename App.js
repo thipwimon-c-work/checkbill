@@ -25,6 +25,7 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
 import CountTop from  "./Component/CountTop";
+import TwoTab from  "./Component/TwoTab";
 import { Content,Grid, Col, Header, Title, H3, H1 } from 'native-base';
 
 export default class App extends React.Component{
@@ -43,7 +44,7 @@ export default class App extends React.Component{
               
             <Grid>
               <Col >
-               <CountTop/>
+               <CountTop count={2}/>
               </Col>
               <Col >
                 <H3>ราคารวม</H3>
@@ -52,6 +53,7 @@ export default class App extends React.Component{
               <Col >
               </Col>
             </Grid>
+            <TwoTab/>
             </Content>
           </ScrollView>
         </SafeAreaView>
