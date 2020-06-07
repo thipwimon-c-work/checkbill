@@ -8,16 +8,21 @@ import { connect } from "react-redux";
 
 export class CountTop extends Component {
     render() {
-        let { people } = this.props;
+        let sumTotal = 0;
+        const { people } = this.props;
+        people.map((item) => {
+            sumTotal += item.value;
+        })
+
         return (
-            <View style={{ flexDirection: "row",justifyContent:"space-around" }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
                 <View >
                     <H3>จำนวนคน</H3>
-                    <Text style={{ fontSize: 70 }}>{this.props.count}</Text>
+                    <Text style={{ fontSize: 70 }}>{people.length}</Text>
                 </View>
                 <View >
                     <H3>ราคารวม</H3>
-                    <Text style={{ fontSize: 70 }}>0</Text>
+                    <Text style={{ fontSize: 70 }}>{sumTotal}</Text>
                 </View>
             </View>
         )

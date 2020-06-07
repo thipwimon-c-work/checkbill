@@ -24,21 +24,25 @@ export class TwoTab extends Component {
 
     AddPeople = () => {
         let { peopleAdd, listPeople } = this.state;
-        const {SetPeopleData,people} = this.props;
+        const { SetPeopleData, people } = this.props;
 
-        listPeople.push({
-            name: peopleAdd,
-            value: 100000
-        });
+        if (peopleAdd && peopleAdd.trim() !== "") {
+            listPeople.push({
+                name: peopleAdd,
+                value: 100
+            });
 
-        console.log(people,'curpeople')
-        SetPeopleData(listPeople);
-        this.setState({ listPeople: listPeople, peopleAdd: "" })
+            console.log(people, 'curpeople')
+            SetPeopleData(listPeople);
+            this.props.onUpdate();
+            this.setState({ listPeople: listPeople, peopleAdd: "" })
+        }
     }
 
     ClearPeople = () => {
-        const {SetPeopleData} = this.props;
+        const { SetPeopleData } = this.props;
         SetPeopleData([]);
+        this.props.onUpdate();
         this.setState({ listPeople: [] })
     }
 
@@ -75,12 +79,12 @@ export class TwoTab extends Component {
 const mapStateToProps = (state) => {
     const { people } = state.data;
     return { people };
-  };
-  
-  export default connect(
+};
+
+export default connect(
     mapStateToProps,
     { SetPeopleData }
-  )(TwoTab);
+)(TwoTab);
 
 const AddPeople = (props) => {
     return (
@@ -129,7 +133,7 @@ const ListPeople = (props) => {
                     style={{ width: 90, backgroundColor: "none", justifyContent: "center", marginLeft: 250, marginTop: 50 }}
                     onPress={() => props.clear()}
                 >
-                    <Text style={{color:"red"}}>Clear</Text>
+                    <Text style={{ color: "red" }}>Clear</Text>
                 </Button>}
             />
         </React.Fragment>)
