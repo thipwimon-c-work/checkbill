@@ -6,8 +6,10 @@ import {
     TextInput,
     TouchableOpacity
 } from "react-native";
+import { connect } from "react-redux";
+import { SetPeopleData } from "../Action";
 
-export default class TwoTab extends Component {
+export class TwoTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,16 +24,21 @@ export default class TwoTab extends Component {
 
     AddPeople = () => {
         let { peopleAdd, listPeople } = this.state;
+        const {SetPeopleData,people} = this.props;
 
         listPeople.push({
             name: peopleAdd,
             value: 100000
         });
 
+        console.log(people,'curpeople')
+        SetPeopleData(listPeople);
         this.setState({ listPeople: listPeople, peopleAdd: "" })
     }
 
     ClearPeople = () => {
+        const {SetPeopleData} = this.props;
+        SetPeopleData([]);
         this.setState({ listPeople: [] })
     }
 
@@ -46,7 +53,6 @@ export default class TwoTab extends Component {
                         <TabHeading style={{ backgroundColor: "white" }}>
                             <Icon name="md-list" /><Text>รายการ</Text>
                         </TabHeading>}>
-
                     </Tab>
                     <Tab heading={
                         <TabHeading style={{ backgroundColor: "white" }}>
@@ -61,11 +67,20 @@ export default class TwoTab extends Component {
                         <ListPeople listPeople={listPeople} clear={this.ClearPeople} />
                     </Tab>
                 </Tabs>
-
             </Container>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    const { people } = state.data;
+    return { people };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    { SetPeopleData }
+  )(TwoTab);
 
 const AddPeople = (props) => {
     return (
