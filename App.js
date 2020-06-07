@@ -24,44 +24,34 @@ import {
   DebugInstructions,
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
-import CountTop from  "./Component/CountTop";
-import TwoTab from  "./Component/TwoTab";
-import { Content,Grid, Col, Header, Title, H3, H1 } from 'native-base';
+import CountTop from "./Component/CountTop";
+import TwoTab from "./Component/TwoTab";
+import { Content, Grid, Col, Header, Title, H3, H1, Body } from 'native-base';
 
-export default class App extends React.Component{
+export default class App extends React.Component {
   render() {
     return (
-      <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <Header >
-              <Title>Checkbill</Title>
-            </Header>
-            <Content>
-              
-            <Grid>
-              <Col >
-               <CountTop count={2}/>
-              </Col>
-              <Col >
-                <H3>ราคารวม</H3>
-                <Text style={{ fontSize: 70 }}>0</Text>
-              </Col>
-              <Col >
-              </Col>
-            </Grid>
-            <TwoTab/>
-            </Content>
-          </ScrollView>
-        </SafeAreaView>
-      </>
+
+      <View style={{ flex: 1,}}>
+        <Header>
+          <Body>
+            <Title>CheckBill</Title>
+          </Body>
+        </Header>
+        <View style={{
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}>
+          <CountTop count={0} />
+          <TwoTab />
+        </View>
+      </View>
+
     );
   }
 }
- 
+
 
 
 const styles = StyleSheet.create({

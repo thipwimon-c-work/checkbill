@@ -1,17 +1,64 @@
 import React, { Component } from 'react';
-import { Container, Header, Tab, Tabs, TabHeading, Icon, Text, Input, InputGroup, Button, Grid, Col, Row } from 'native-base';
+import { Container, Header, Tab, Tabs, TabHeading, Icon, Text, Button, Grid, Col, Row, List, ListItem, Left, Right } from 'native-base';
+import {
+    View,
+    FlatList,
+    TextInput,
+    TouchableOpacity
+} from "react-native";
 
 export default class TwoTab extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listPeople: [],
+            peopleAdd: ""
+        };
+    }
+
+    HandlePeople = (text) => {
+        this.setState({ peopleAdd: text })
+    }
+
+    AddPeople = () => {
+        let { peopleAdd, listPeople } = this.state;
+
+        listPeople.push({
+            name: peopleAdd,
+            value: 100000
+        });
+
+        this.setState({ listPeople: listPeople, peopleAdd: "" })
+    }
+
+    ClearPeople = () => {
+        this.setState({ listPeople: [] })
+    }
+
     render() {
+
+        let { listPeople, peopleAdd } = this.state;
+
         return (
             <Container>
-                <Header hasTabs />
                 <Tabs>
-                    <Tab heading={<TabHeading><Icon name="md-list" /><Text>รายการ</Text></TabHeading>}>
-                        {/* <Tab1 /> */}
+                    <Tab heading={
+                        <TabHeading style={{ backgroundColor: "white" }}>
+                            <Icon name="md-list" /><Text>รายการ</Text>
+                        </TabHeading>}>
+
                     </Tab>
-                    <Tab heading={<TabHeading><Icon name="md-people" /><Text>คนจ่าย</Text></TabHeading>}>
-                        <AddPeople />
+                    <Tab heading={
+                        <TabHeading style={{ backgroundColor: "white" }}>
+                            <Icon name="md-people" />
+                            <Text>คนจ่าย</Text>
+                        </TabHeading>}>
+                        <AddPeople
+                            handlePeople={this.HandlePeople}
+                            addPeople={this.AddPeople}
+                            value={peopleAdd} />
+
+                        <ListPeople listPeople={listPeople} clear={this.ClearPeople} />
                     </Tab>
                 </Tabs>
 
@@ -20,17 +67,56 @@ export default class TwoTab extends Component {
     }
 }
 
-const AddPeople = () => {
-    return (<React.Fragment>
-        <Grid style={{marginTop:5,marginLeft:5,marginRight:5}}>
-            <Col >
-                <Row>
-                    <Input  placeholder='ระบุชื่อ' />
-                    <Button style={{width:100,justifyContent:"center"}} primary><Text>เพิ่ม</Text></Button>
-                </Row>
-            </Col>
-        </Grid>
+const AddPeople = (props) => {
+    return (
+        <View style={{ marginTop: 20, marginLeft: 5, marginRight: 5 }}>
 
-
-    </React.Fragment>)
+            <View style={{ flexDirection: "row", }}>
+                <TextInput style={{ borderBottomWidth: 1, width: 300 }}
+                    onChangeText={(text) => {
+                        props.handlePeople(text);
+                    }}
+                    placeholder='ระบุชื่อ'
+                    value={props.value}
+                />
+                <Button
+                    style={{ width: 90, justifyContent: "center", marginLeft: 5 }}
+                    onPress={() => props.addPeople()}
+                    primary>
+                    <Text>เพิ่ม</Text>
+                </Button>
+            </View>
+        </View>)
 };
+
+const ListPeople = (props) => {
+    return (
+        <React.Fragment>
+            <View style={{ marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
+                <Text style={{ marginLeft: 30, width: 200 }}>ชื่อ</Text>
+                <Text style={{ marginRight: 100 }}>จ่าย</Text>
+            </View>
+
+            <FlatList
+                data={props.listPeople}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item, index, separators }) => (
+
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", borderColor: "black" }}>
+
+                        <Text style={{ marginLeft: 30, width: 100 }}>{item.name}</Text>
+                        <Text style={{ marginRight: 100 }}>{item.value}</Text>
+
+
+                    </View>
+                )}
+                ListFooterComponent={props.listPeople.length > 0 && <Button
+                    style={{ width: 90, backgroundColor: "none", justifyContent: "center", marginLeft: 250, marginTop: 50 }}
+                    onPress={() => props.clear()}
+                >
+                    <Text style={{color:"red"}}>Clear</Text>
+                </Button>}
+            />
+        </React.Fragment>)
+
+}
