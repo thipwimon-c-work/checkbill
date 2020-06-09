@@ -15,12 +15,12 @@ export class CountTop extends Component {
         })
 
         return (
-            <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-                <View >
+            <View style={{ flexDirection: "row" }}>
+                <View style={{marginLeft:20}}>
                     <H3>จำนวนคน</H3>
                     <Text style={{ fontSize: 70 }}>{people.length}</Text>
                 </View>
-                <View >
+                <View style={{marginLeft:80}}>
                     <H3>ราคารวม</H3>
                     <Text style={{ fontSize: 70 }}>{sumTotal}</Text>
                 </View>

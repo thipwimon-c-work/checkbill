@@ -29,10 +29,9 @@ export class TwoTab extends Component {
         if (peopleAdd && peopleAdd.trim() !== "") {
             listPeople.push({
                 name: peopleAdd,
-                value: 100
+                value: 0 
             });
 
-            console.log(people, 'curpeople')
             SetPeopleData(listPeople);
             this.props.onUpdate();
             this.setState({ listPeople: listPeople, peopleAdd: "" })
@@ -121,11 +120,10 @@ const ListPeople = (props) => {
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index, separators }) => (
 
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", borderColor: "black" }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between"}}>
 
                         <Text style={{ marginLeft: 30, width: 100 }}>{item.name}</Text>
                         <Text style={{ marginRight: 100 }}>{item.value}</Text>
-
 
                     </View>
                 )}
